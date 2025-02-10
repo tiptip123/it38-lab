@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 10, 2025 at 03:38 PM
+-- Generation Time: Feb 10, 2025 at 08:18 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -28,7 +28,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `login_logs` (
-  `login_id` int(11) NOT NULL,
+  `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `login_time` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -37,11 +37,12 @@ CREATE TABLE `login_logs` (
 -- Dumping data for table `login_logs`
 --
 
-INSERT INTO `login_logs` (`login_id`, `user_id`, `login_time`) VALUES
-(1, 1, '2025-02-10 22:23:16'),
-(2, 2, '2025-02-10 22:24:06'),
-(3, 1, '2025-02-10 22:25:28'),
-(4, 1, '2025-02-10 22:28:52');
+INSERT INTO `login_logs` (`id`, `user_id`, `login_time`) VALUES
+(3, 6, '2025-02-03 15:42:45'),
+(4, 6, '2025-02-03 15:47:10'),
+(5, 6, '2025-02-03 15:48:05'),
+(6, 7, '2025-02-03 15:50:31'),
+(7, 6, '2025-02-10 15:15:59');
 
 -- --------------------------------------------------------
 
@@ -63,8 +64,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `password`, `user_type`, `last_login`, `created_at`) VALUES
-(1, 'admin', '$2y$10$CQIwhgeWPPQULdNxYC2F0.do.9YaLA4ukKdXsM8HXttaxMBd5Zu.O', 'admin', '2025-02-10 22:28:52', '2025-02-10 14:23:05'),
-(2, 'tiptip', '$2y$10$sadnmpAX4b.K3iujn77luOMtR3bDACSAUlVYvcoE/XWaZbmTFH0vC', 'user', '2025-02-10 22:24:06', '2025-02-10 14:23:58');
+(6, 'admin', '$2y$10$GLeky4ZZsCMsSghkcpn8Pu8GrhakJzdFsccEZuMLxTK1wanadhklS', 'admin', '2025-02-10 15:15:59', '2025-02-03 07:42:39'),
+(7, 'user', '$2y$10$2TOevkGdMN7NT4YK/3up8.ljMB0.UwpxvgGL2FcCof78QoIaQoSsq', 'user', '2025-02-03 15:50:31', '2025-02-03 07:50:24');
 
 --
 -- Indexes for dumped tables
@@ -74,13 +75,15 @@ INSERT INTO `users` (`id`, `username`, `password`, `user_type`, `last_login`, `c
 -- Indexes for table `login_logs`
 --
 ALTER TABLE `login_logs`
-  ADD PRIMARY KEY (`login_id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_id` (`user_id`);
 
 --
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `username` (`username`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -90,13 +93,23 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `login_logs`
 --
 ALTER TABLE `login_logs`
-  MODIFY `login_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `login_logs`
+--
+ALTER TABLE `login_logs`
+  ADD CONSTRAINT `login_logs_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
