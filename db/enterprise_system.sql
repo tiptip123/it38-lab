@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 10, 2025 at 08:54 AM
+-- Generation Time: Mar 10, 2025 at 01:33 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -32,6 +32,13 @@ CREATE TABLE `attendance` (
   `user_id` int(11) NOT NULL,
   `attendance_date` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `attendance`
+--
+
+INSERT INTO `attendance` (`attendance_ID_id`, `user_id`, `attendance_date`) VALUES
+(1, 3, '2025-03-10 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -72,7 +79,9 @@ INSERT INTO `login_logs` (`login_id`, `user_id`, `login_time`) VALUES
 (20, 3, '2025-03-10 15:47:47'),
 (21, 3, '2025-03-10 15:49:29'),
 (22, 3, '2025-03-10 15:50:49'),
-(23, 3, '2025-03-10 15:53:30');
+(23, 3, '2025-03-10 15:53:30'),
+(24, 3, '2025-03-10 20:28:21'),
+(25, 3, '2025-03-10 20:28:36');
 
 -- --------------------------------------------------------
 
@@ -96,7 +105,7 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `username`, `password`, `user_type`, `last_login`, `created_at`) VALUES
 (1, 'admin', '$2y$10$CQIwhgeWPPQULdNxYC2F0.do.9YaLA4ukKdXsM8HXttaxMBd5Zu.O', 'admin', '2025-03-10 15:10:25', '2025-02-10 14:23:05'),
 (2, 'tiptip', '$2y$10$sadnmpAX4b.K3iujn77luOMtR3bDACSAUlVYvcoE/XWaZbmTFH0vC', 'user', '2025-02-10 22:24:06', '2025-02-10 14:23:58'),
-(3, 'tipot', '$2y$10$JA9MwHXPm9le2nVOlAGQmuhuypTrHoNAdRw31J1/gTf4aC9BvApxC', 'user', '2025-03-10 15:53:30', '2025-03-10 07:11:19');
+(3, 'tipot', '$2y$10$JA9MwHXPm9le2nVOlAGQmuhuypTrHoNAdRw31J1/gTf4aC9BvApxC', 'user', '2025-03-10 20:28:36', '2025-03-10 07:11:19');
 
 --
 -- Indexes for dumped tables
@@ -128,13 +137,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `attendance`
 --
 ALTER TABLE `attendance`
-  MODIFY `attendance_ID_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `attendance_ID_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `login_logs`
 --
 ALTER TABLE `login_logs`
-  MODIFY `login_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `login_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `users`
